@@ -1,16 +1,13 @@
-C = new Meteor.Collection("c");
-
 if (Meteor.isClient) {
   Template.hello.someElements = function () {
-    return _.map(["X", "Y"], function (id) {
-      return C.findOne(id) || {_id: id};
-    });
+    console.log("some", Deps.active)
+    return [
+      {_id: "Y", text: Session.get("y")}
+    ];
   };
-}
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    C.remove({});
-    C.insert({_id: "Y", text: "foo"});
+  Template.hello.events({
+    'click button': function () {
+      Session.set("y", Random.id());
+    }
   });
 }
