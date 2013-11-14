@@ -1,0 +1,15 @@
+<head>
+  <title>reactive-list-bug</title>
+</head>
+
+<body>
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <ul>
+    {{#each someElements}}
+      <li>ID: {{_id}}, text: {{text}}</li>
+    {{/each}}
+  </ul>
+</template>
